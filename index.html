@@ -1,1 +1,75 @@
-ola mundo
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .instagram-gallery-medium {
+            width: 480px;
+            cursor: pointer;
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            display: -o-flex;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .instagram-gallery-medium>a {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            overflow: hidden;
+            margin: 5px;
+        }
+
+        .instagram-gallery-medium>a>video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        /* Extra small devices (portrait phones, less than 576px) */
+        @media (max-width: 575px) {
+            .instagram-gallery-medium {
+                width: 320px;
+            }
+
+            .instagram-gallery-medium>a {
+                width: 100px;
+                height: 100px;
+                margin: 2px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="instafeed" class="instagram-gallery-medium"></div>
+
+    <!-- BEGIN - FC Instagram - Script -->
+    <script src="instagram/shared/js/FCInstagram.js"></script>
+    <script>
+        const token = "AQAZ60DA846AWiFu1iaPLL6buDxWoqQUMCRs0lSu6LvIJnpR_LFhzgbcudiYSgnBb3lUw25sbvs7_ii7d7drbjAJ0yejPx-K3dRrc5JEwgQwfjokIfYRSd7rwTnX2HqVMZj34j1cm0WoacPs3RPzQf97_LVwGrGkv_Zsehc0RS3DKykdCuX2Ekl8S9IzwcyopLJB_Q1uv3r7KUWPz9DtzbmK4a3E6f2EkjJzD3jUcYR0hA"
+
+        jQuery.fn.FCInstagram.accessData = {
+            accessToken: token, // Token
+        };
+        $('#instafeed').FCInstagram({
+            max: 9, // A number between 1 and 25 of photos to show. Default: 9
+            autoplay: false, // Set autoplay video: true/false. Default: false
+            complete: function () { // A callback function to execute after the display of the photos.
+                console.log('completed');
+            }
+        });
+    </script>
+    <!-- END - FC Instagram - Script -->
+</body>
+
+</html>
