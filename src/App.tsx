@@ -1,16 +1,9 @@
+import Landing from "./pages/landing";
+
 function App() {
   return (
     <>
-      <div>&lt; Epitacio /&gt;</div>
-
-      <div>
-        <p>
-          Olá, meu nome é Epitacio Araujo <br /> e eu sou desenvolvedor de
-          {"---"}
-        </p>
-      </div>
-
-      <div>deixe-me mostrar para você...</div>
+      <Landing />
 
       <div>experiências /&gt;</div>
 

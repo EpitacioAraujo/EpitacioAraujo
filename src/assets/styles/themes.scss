@@ -1,0 +1,18 @@
+@import "./palette.scss";
+
+.purple {
+    color: $purple;
+}
+
+.section-title {
+  font-weight: 100;
+  color: $font-subtle;
+}
+
+.mono {
+  font-family: 'Roboto Mono';
+}
+
+.letter-spaced {
+  letter-spacing: 1.3rem;
+}
