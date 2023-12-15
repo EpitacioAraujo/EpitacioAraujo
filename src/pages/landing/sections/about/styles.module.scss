@@ -2,9 +2,29 @@
 @import "../../../../assets/styles/palette.scss";
 
 .container {
-  margin: auto;
+  margin: 50px auto 0px;
   max-width: $max-content-width;
   line-height: 1.7;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    width: 100vw;
+    height: 50px;
+    transform: translateX(-50%);
+
+    background-image: linear-gradient(-180deg, #fff0, $background-black 90%);
+
+    z-index: 1;
+  }
+
+  & > * {
+    z-index: 2;
+    position: relative;
+  }
 }
 
 .tab-dots {

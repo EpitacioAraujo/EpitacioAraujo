@@ -165,7 +165,11 @@ function About() {
     divRef.current.innerHTML = rows;
   }, []);
 
-  return <div className={styles.container} ref={divRef}></div>;
+  return (
+    <div className={styles.container}>
+      <div ref={divRef}></div>
+    </div>
+  );
 }
 
 export default About;
