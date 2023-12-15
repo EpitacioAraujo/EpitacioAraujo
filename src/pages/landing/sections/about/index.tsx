@@ -9,6 +9,14 @@ const tabs = (total: number) => {
   );
 };
 
+const setQuotes = (text: string) => {
+  return `' ${text} '`;
+};
+
+const setNBSP = (total: number) => {
+  return Array(total).fill("&nbsp;").join("");
+};
+
 const purple = (text: string) => {
   return `<span class="${styles.purple}">${text}</span>`;
 };
@@ -39,9 +47,9 @@ const grey = (text: string) => {
 
 const generateConstructorString = () => {
   const atributes = [
-    ["name", "'Epitacio Araujo'"],
+    ["name", setQuotes("Epitacio Araujo")],
     ["dayOfBirthTimestamp", 964137600000],
-    ["email", "'epitacio.sobrinho00@gmail.com'"],
+    ["email", setQuotes("epitacio.sobrinho00@gmail.com")],
     ["whatsNumber", 88997761060],
   ]
     .map(([attribute, value]: any[]) => {
@@ -63,7 +71,11 @@ const generateWorkMethodString = () => {
     ],
     ["Mar/21 – Ago/21", "Elevar Vendas"],
   ].map(([time, value]: any[]) => {
-    return `${tabs(3)}{ ${green(`'${time}'`)} : ${green(`'${value}'`)} }`;
+    return (
+      `${tabs(3)}{ ${green(setQuotes(time))}` +
+      `${setNBSP(2)}:${setNBSP(2)}` +
+      `${green(setQuotes(value))} }`
+    );
   });
 
   return [
@@ -80,7 +92,11 @@ const generateEducationalMethodString = () => {
     [`2021-now`, `Unicesumar - Engenharia de Software`],
     [`2015-2018`, `EEEP Monsenho Odorico de Andrade - Técnico em Informática`],
   ].map(([attribute, value]) => {
-    return `${tabs(3)}{ ${green(`'${attribute}'`)}: ${green(`'${value}'`)} },`;
+    return (
+      `${tabs(3)}{ ${green(setQuotes(attribute))}` +
+      `${setNBSP(2)}:${setNBSP(2)}` +
+      `${green(setQuotes(value))} },`
+    );
   });
 
   return [
@@ -93,31 +109,36 @@ const generateEducationalMethodString = () => {
 };
 
 const generateSkillMethodString = () => {
+  const skills = [
+    "HTML/CSS/JS",
+    "Node.js",
+    "Bootstrap/Material UI",
+    "Vite",
+    "SCSS",
+    "npm/yarn",
+    "PWA",
+    "SPA",
+    "GIT/GITFlow",
+    "React.js",
+    "React Native",
+    "Web Sockets",
+    "PostgreSQL/Microsoft SQL Server/MySQL",
+    "Firebase/MongoDB",
+    "AWS",
+    "TypeScript",
+    "NestJS",
+    "Sequelize",
+    "TypeORM",
+    "JWT",
+    "MVC",
+    "SOLID",
+  ]
+    .map((skill) => green(setQuotes(skill)))
+    .join("&nbsp;&nbsp;,&nbsp;&nbsp;");
+
   return [
     `${tabs(1)}${yellow("skills")}() {`,
-    `${tabs(2)}${purple("return")} [${green(`
-      "HTML/CSS/JS",
-      "Node.js",
-      "Bootstrap/Material UI",
-      "Vite",
-      "SCSS",
-      "npm/yarn",
-      "PWA",
-      "SPA",
-      "GIT/GITFlow",
-      "React.js",
-      "React Native",
-      "Web Sockets",
-      "PostgreSQL/Microsoft SQL Server/MySQL",
-      "Firebase/MongoDB",
-      "AWS",
-      "TypeScript",
-      "NestJS",
-      "Sequelize",
-      "TypeORM",
-      "JWT",
-      "MVC",
-      "SOLID"`)} ]`,
+    `${tabs(2)}${purple("return")} [ ${skills} ]`,
     `${tabs(1)}}`,
     `}`,
   ];
