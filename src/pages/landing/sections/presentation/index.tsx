@@ -15,8 +15,8 @@ function Presentation() {
 
         <p className={presentationClasses}>
           Olá, meu nome é <span>Epitacio Araujo</span>
-          <br />
-          eu <span className="mono letter-spacing">desenvolvo</span> para{"---"}
+          <br />e <span className="mono letter-spacing">desenvolvo</span> para
+          {"---"}
         </p>
 
         <div>

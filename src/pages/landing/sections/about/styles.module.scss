@@ -1,0 +1,42 @@
+@import "../../../../assets/styles/metrics.scss";
+@import "../../../../assets/styles/palette.scss";
+
+.container {
+  margin: auto;
+  max-width: $max-content-width;
+  line-height: 1.7;
+}
+
+.tab-dots {
+  letter-spacing: 0.5rem;
+  vertical-align: middle;
+  color: $font-subtle;
+}
+
+.purple {
+  color: $purple;
+}
+
+.yellow {
+  color: $yellow;
+}
+
+.lightGreen {
+  color: $lightGreen;
+}
+
+.green {
+  color: $green;
+}
+
+.red {
+  color: $red;
+}
+
+.orange {
+  color: $orange;
+}
+
+.grey {
+  color: $font-subtle;
+}
