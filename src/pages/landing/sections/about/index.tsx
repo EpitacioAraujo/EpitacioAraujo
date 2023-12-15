@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 import styles from "./styles.module.scss";
+import SectionTitle from "../../../../components/SectionTitle";
 
 const tabs = (total: number) => {
   return (
@@ -167,6 +168,8 @@ function About() {
 
   return (
     <div className={styles.container}>
+      <SectionTitle title="Sobre" />
+
       <div ref={divRef}></div>
     </div>
   );

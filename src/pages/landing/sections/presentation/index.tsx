@@ -1,17 +1,16 @@
 import classNames from "classnames";
 import "./styles.scss";
+import SectionTitle from "../../../../components/SectionTitle";
 
 function Presentation() {
   const containerClasses = classNames("container");
-
-  const sectionClasses = classNames("section-title");
 
   const presentationClasses = classNames("presentation");
 
   return (
     <div className={containerClasses}>
       <div className="content">
-        <span className={sectionClasses}>Start /&gt;</span>
+        <SectionTitle title="Start" />
 
         <p className={presentationClasses}>
           Olá, meu nome é <span>Epitacio Araujo</span>

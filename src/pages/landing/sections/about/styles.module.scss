@@ -16,7 +16,11 @@
     height: 50px;
     transform: translateX(-50%);
 
-    background-image: linear-gradient(-180deg, #fff0, $background-black 90%);
+    background-image: linear-gradient(
+      -180deg,
+      #fff0,
+      rgba($background-black, 99%) 90%
+    );
 
     z-index: 1;
   }
