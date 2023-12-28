@@ -7,9 +7,10 @@ const iconsList = {
 } as const;
 
 interface Props extends IconBaseProps {
-  iconName: keyof typeof iconsList;
+  $iconName: keyof typeof iconsList;
 }
 
 export default function IconsFacade(props: Props) {
-  return iconsList[props.iconName](props);
+  const { $iconName, ...restProps } = props;
+  return iconsList[props.$iconName](restProps);
 }

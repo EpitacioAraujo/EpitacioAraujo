@@ -2,7 +2,6 @@ import classNames from "classnames";
 import styles from "./styles.module.scss";
 
 function Header() {
-  console.log(styles);
   const containerClasses = classNames([styles.container], {
     [styles.inactive]: false,
   });

@@ -11,7 +11,7 @@ const tabs = (total: number) => {
 };
 
 const setQuotes = (text: string) => {
-  return `' ${text} '`;
+  return `'${text}'`;
 };
 
 const setNBSP = (total: number) => {
@@ -46,22 +46,28 @@ const grey = (text: string) => {
   return `<span class="${styles.grey}">${text}</span>`;
 };
 
+const row = (rowDt: string) => {
+  return `<span class="${styles.row}">${rowDt}</span>`;
+};
+
 const generateConstructorString = () => {
   const atributes = [
     ["name", setQuotes("Epitacio Araujo")],
     ["dayOfBirthTimestamp", 964137600000],
     ["email", setQuotes("epitacio.sobrinho00@gmail.com")],
     ["whatsNumber", 88997761060],
-  ]
-    .map(([attribute, value]: any[]) => {
-      const valueString = (typeof value === "string" ? green : orange)(value);
-      return `${tabs(2)}${red("this")}.${lightGreen(
-        attribute
-      )} = ${valueString}`;
-    })
-    .join("<br />");
+  ].map(([attribute, value]: any[]) => {
+    const valueString = (typeof value === "string" ? green : orange)(value);
+    return row(
+      `${tabs(2)}${red("this")}.${lightGreen(attribute)} = ${valueString}`
+    );
+  });
 
-  return [`${tabs(1)}${purple("constructor")}() {`, atributes, `${tabs(1)}}`];
+  return [
+    row(`${tabs(1)}${purple("constructor")}() {`),
+    ...atributes,
+    row(`${tabs(1)}}`),
+  ];
 };
 
 const generateWorkMethodString = () => {
@@ -72,19 +78,19 @@ const generateWorkMethodString = () => {
     ],
     ["Mar/21 – Ago/21", "Elevar Vendas"],
   ].map(([time, value]: any[]) => {
-    return (
+    return row(
       `${tabs(3)}{ ${green(setQuotes(time))}` +
-      `${setNBSP(2)}:${setNBSP(2)}` +
-      `${green(setQuotes(value))} }`
+        `${setNBSP(2)}:${setNBSP(2)}` +
+        `${green(setQuotes(value))} }`
     );
   });
 
   return [
-    `${tabs(1)}${yellow("workExperience")}() {`,
-    `${tabs(2)}${purple("return")} [`,
+    row(`${tabs(1)}${yellow("workExperience")}() {`),
+    row(`${tabs(2)}${purple("return")} [`),
     ...itensList,
-    `${tabs(2)}]`,
-    `${tabs(1)}}`,
+    row(`${tabs(2)}]`),
+    row(`${tabs(1)}}`),
   ];
 };
 
@@ -93,19 +99,19 @@ const generateEducationalMethodString = () => {
     [`2021-now`, `Unicesumar - Engenharia de Software`],
     [`2015-2018`, `EEEP Monsenho Odorico de Andrade - Técnico em Informática`],
   ].map(([attribute, value]) => {
-    return (
+    return row(
       `${tabs(3)}{ ${green(setQuotes(attribute))}` +
-      `${setNBSP(2)}:${setNBSP(2)}` +
-      `${green(setQuotes(value))} },`
+        `:` +
+        `${green(setQuotes(value))} },`
     );
   });
 
   return [
-    `${tabs(1)}${yellow("education")}() {`,
-    `${tabs(2)}${purple("return")} [`,
+    row(`${tabs(1)}${yellow("education")}() {`),
+    row(`${tabs(2)}${purple("return")} [`),
     ...atributes,
-    `${tabs(2)}]`,
-    `${tabs(1)}}`,
+    row(`${tabs(2)}]`),
+    row(`${tabs(1)}}`),
   ];
 };
 
@@ -138,39 +144,53 @@ const generateSkillMethodString = () => {
     .join("&nbsp;&nbsp;,&nbsp;&nbsp;");
 
   return [
-    `${tabs(1)}${yellow("skills")}() {`,
-    `${tabs(2)}${purple("return")} [ ${skills} ]`,
-    `${tabs(1)}}`,
-    `}`,
+    row(`${tabs(1)}${yellow("skills")}() {`),
+    row(`${tabs(2)}${purple("return")} [ ${skills} ]`),
+    row(`${tabs(1)}}`),
+    row(`}`),
   ];
 };
 
 const rows = [
-  `${purple("class")} ${yellow("Epitacio Araujo")} {`,
-  `${tabs(1)}${grey("// Eu posso, porque eu fiz.")}`,
-  `${tabs(1)}${grey("// Minha variedade de skills continuam expandindo.")}`,
-  ``,
+  row(`${purple("class")} ${yellow("Epitacio Araujo")} {`),
+  row(`${tabs(1)}${grey("// Eu posso, porque eu fiz.")}`),
+  row(
+    `${tabs(1)}${grey("// Minha variedade de skills continuam expandindo.")}`
+  ),
+  row(`<div class="${styles.voidRow}"></div>`),
   ...generateConstructorString(),
-  ``,
+  row(`<div class="${styles.voidRow}"></div>`),
   ...generateWorkMethodString(),
-  ``,
+  row(`<div class="${styles.voidRow}"></div>`),
   ...generateEducationalMethodString(),
-  ``,
+  row(`<div class="${styles.voidRow}"></div>`),
   ...generateSkillMethodString(),
-].join("<br />");
+].join("");
 
 function About() {
   const divRef = useRef({} as HTMLDivElement);
 
   useLayoutEffect(() => {
     divRef.current.innerHTML = rows;
+
+    const rowsList = document.querySelectorAll(`.${styles.row}`);
+
+    console.log(rowsList);
+    rowsList.forEach((element, index) => {
+      const { offsetHeight, style } = element as HTMLSpanElement;
+
+      style.setProperty("--rowHeight", `${offsetHeight}px`);
+      style.setProperty("--rowNumber", `${index + 1}`);
+
+      console.log(style);
+    });
   }, []);
 
   return (
     <div className={styles.container}>
       <SectionTitle title="Sobre" />
 
-      <div ref={divRef}></div>
+      <div ref={divRef} className={styles.content}></div>
     </div>
   );
 }

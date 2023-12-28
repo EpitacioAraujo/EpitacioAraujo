@@ -24,9 +24,9 @@ function Contact() {
         <SectionTitle title="Contato" />
 
         <ul>
-          {CONTACT_MEDIAS.map(({ icon, name }) => {
+          {CONTACT_MEDIAS.map(({ icon, name }, index) => {
             return (
-              <li>
+              <li key={index}>
                 <Icons name={icon} />
                 {name}
               </li>
