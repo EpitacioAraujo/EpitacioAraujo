@@ -152,7 +152,7 @@ const generateSkillMethodString = () => {
 };
 
 const rows = [
-  row(`${purple("class")} ${yellow("Epitacio Araujo")} {`),
+  row(`${purple("class")} ${yellow("Developer")} {`),
   row(`${tabs(1)}${grey("// Eu posso, porque eu fiz.")}`),
   row(
     `${tabs(1)}${grey("// Minha variedade de skills continuam expandindo.")}`
@@ -175,14 +175,11 @@ function About() {
 
     const rowsList = document.querySelectorAll(`.${styles.row}`);
 
-    console.log(rowsList);
     rowsList.forEach((element, index) => {
       const { offsetHeight, style } = element as HTMLSpanElement;
 
       style.setProperty("--rowHeight", `${offsetHeight}px`);
       style.setProperty("--rowNumber", `${index + 1}`);
-
-      console.log(style);
     });
   }, []);
 
